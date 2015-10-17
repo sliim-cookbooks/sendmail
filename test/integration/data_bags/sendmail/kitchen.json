@@ -1,0 +1,33 @@
+{
+  "id": "kitchen",
+  "user": {
+    "encrypted_data": "TfpzfTqvSz8q/epnGs/2i9iy2VwpL/c8TzFvmoPnkZ8=\n",
+    "iv": "w6EZ4rKlTxH/iXZDaZC3pQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "account": {
+    "encrypted_data": "wU6xVN+T1mT8JREa65mMYsfWwvpUeUGoMF0zs8urR5C8567D9Oeh1Dshc2ZG\nWqA9\n",
+    "iv": "7p3Ixo/qLzZZs4kgSQ1g7w==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "password": {
+    "encrypted_data": "SYGauIe3KKFupEXCXt6Qt10wQQ3FS7LXg/IxxLW+YYgQtBqJBDK+dffZHuYL\njhHP\n",
+    "iv": "PpWY3rPHg7ysxL1WuhX/Gw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "host": {
+    "encrypted_data": "tP8jIW0jhERGESQoLsMa8BD3Tvxtc3FMSolg7tccuNQiwcfIwt216Mo8l7KU\nZ3Un\n",
+    "iv": "XOzJCaTSYLkCTkTJ593Yvg==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "port": {
+    "encrypted_data": "hb63a0PyHZ+pub3IjfIfLM8KuBqTQCPdMdkhpAHK16U=\n",
+    "iv": "s6DWyi85xJW7e1sUNucYQQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}
