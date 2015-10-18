@@ -1,4 +1,4 @@
-# sendmail Cookbook | [![Build Status](https://travis-ci.org/sliim-cookbooks/sendlail.svg?branch=master)](https://travis-ci.org/sliim-cookbooks/sendmail) 
+# sendmail Cookbook | [![Build Status](https://travis-ci.org/sliim-cookbooks/sendmail.svg?branch=master)](https://travis-ci.org/sliim-cookbooks/sendmail) 
 
 ## Requirements
 
