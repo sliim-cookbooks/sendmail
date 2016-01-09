@@ -34,7 +34,6 @@ unless authinfo.nil?
 
   execute "makemap hash #{authinfo['id']}-auth < #{authinfo['id']}-auth" do
     cwd '/etc/mail/authinfo'
-    notifies :delete, "file[/etc/mail/authinfo/#{authinfo['id']}-auth]"
   end
 
   template '/etc/mail/sendmail.mc' do
@@ -48,10 +47,6 @@ unless authinfo.nil?
   execute 'make -C /etc/mail' do
     action :nothing
     notifies :reload, 'service[sendmail]'
-  end
-
-  file "/etc/mail/authinfo/#{authinfo['id']}-auth" do
-    action :nothing
   end
 end
 
