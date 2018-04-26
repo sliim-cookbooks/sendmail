@@ -46,7 +46,7 @@ unless authinfo.nil?
 
   execute 'make -C /etc/mail' do
     action :nothing
-    notifies :reload, 'service[sendmail]'
+    notifies :restart, 'service[sendmail]'
   end
 end
 
