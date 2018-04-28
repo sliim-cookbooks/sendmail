@@ -3,7 +3,14 @@
 require_relative 'spec_helper'
 
 describe 'sendmail::default' do
-  subject { ChefSpec::SoloRunner.new.converge(described_recipe) }
+  before do
+    stub_data_bag_item('sendmail', 'default').and_return(nil)
+  end
+
+  let(:subject) do
+    ChefSpec::SoloRunner.new(
+      platform: 'debian', version: '9.3').converge(described_recipe)
+  end
 
   %w(sendmail sendmail-bin mailutils).each do |pkg|
     it "installs package[#{pkg}]" do
@@ -13,21 +20,17 @@ describe 'sendmail::default' do
 
   context 'with data bags' do
     let(:subject) do
-      ChefSpec::ServerRunner.new do |node|
-        node.set['sendmail']['authinfo'] = 'test'
+      stub_data_bag_item(:sendmail, 'test').and_return(
+        'id' => 'test',
+        'user' => 'root',
+        'account' => 'test@foobar.baz',
+        'password' => 'encrypted-passwd',
+        'host' => 'smtp.foobar.baz',
+        'port' => 1337)
+
+      ChefSpec::SoloRunner.new(platform: 'debian', version: '9.3') do |node|
+        node.override['sendmail']['authinfo'] = 'test'
       end.converge(described_recipe)
-    end
-    before do
-      allow(Chef::EncryptedDataBagItem).to receive(:load_secret)
-        .and_return('stub_secret')
-      allow(Chef::EncryptedDataBagItem).to receive(:load)
-        .with('sendmail', 'test', 'stub_secret')
-        .and_return('id' => 'test',
-                    'user' => 'root',
-                    'account' => 'test@foobar.baz',
-                    'password' => 'encrypted-passwd',
-                    'host' => 'smtp.foobar.baz',
-                    'port' => 1337)
     end
 
     it 'creates directory[/etc/mail/authinfo]' do

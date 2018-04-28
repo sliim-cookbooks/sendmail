@@ -10,22 +10,13 @@ node['sendmail']['packages'].each do |pkg|
   package pkg
 end
 
-authinfo = nil
+authinfo = begin
+             data_bag_item('sendmail', node['sendmail']['authinfo'])
+           rescue
+             nil
+           end
 
-unless Chef::Config[:solo]
-  ssl_secret = Chef::EncryptedDataBagItem.load_secret(
-    Chef::Config['encrypted_data_bag_secret'])
-  begin
-    authinfo = Chef::EncryptedDataBagItem.load('sendmail',
-                                               node['sendmail']['authinfo'],
-                                               ssl_secret)
-  rescue Net::HTTPServerException
-    Chef::Log.warn(
-      "No data bag found for authinfo `#{node['sendmail']['authinfo']}`.")
-  end
-end
-
-unless authinfo.nil?
+if authinfo
   directory '/etc/mail/authinfo'
   template "/etc/mail/authinfo/#{authinfo['id']}-auth" do
     source 'auth.erb'

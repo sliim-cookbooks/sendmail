@@ -15,4 +15,4 @@ AllCops:
     - cookbooks/**/*
     - vendor/**/*
     - test/integration/encrypted_data_bag_secret
-    - test/integration/data_bags/*
+    - test/integration/data_bags/**/*
